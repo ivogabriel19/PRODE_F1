@@ -1,6 +1,6 @@
-const User = require('../models/User');
+import User from '../models/user.js';
 
-const registerUser = async (req, res) => {
+export async function registerUser(req, res) {
   const { username, password, email } = req.body;
   try {
     const user = new User({ username, password, email });
@@ -10,5 +10,3 @@ const registerUser = async (req, res) => {
     res.status(400).json({ message: 'Error al registrar usuario', error: err });
   }
 };
-
-module.exports = { registerUser };

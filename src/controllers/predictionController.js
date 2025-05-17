@@ -1,6 +1,6 @@
-const Prediction = require('../models/Prediction');
+import Prediction from '../models/prediction.js';
 
-const submitPrediction = async (req, res) => {
+export async function submitPrediction (req, res) {
   const { userId, raceId, predictions } = req.body;
   try {
     const newPrediction = new Prediction({ user: userId, raceId, predictions });
@@ -10,5 +10,3 @@ const submitPrediction = async (req, res) => {
     res.status(400).json({ message: 'Error al guardar predicción', error: err });
   }
 };
-
-module.exports = { submitPrediction };

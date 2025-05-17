@@ -1,4 +1,4 @@
-const obtenerResultadosCarrera = require('../src/services/obtenerResultadoCarrera');
+import { obtenerResultadoCarrera } from '../src/services/obtenerResultadoCarrera.js';
 
 // Uso de ejemplo:
-obtenerResultadosCarrera("miami", "2024").then(result => console.log(result));
+obtenerResultadoCarrera("miami", "2024").then(result => console.log(result));

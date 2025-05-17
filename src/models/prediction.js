@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const predictionSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
@@ -7,4 +7,6 @@ const predictionSchema = new mongoose.Schema({
   submittedAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Prediction', predictionSchema);
+const Prediction = mongoose.model('Prediction', predictionSchema);
+
+export default Prediction;

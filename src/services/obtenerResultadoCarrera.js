@@ -1,8 +1,10 @@
-const obtenerRoundPorNombre = require('../utils/obtenerRoundPorNombre');
+import {obtenerRoundPorNombre} from '../utils/obtenerRoundPorNombre.js';
 
-async function obtenerResultadoCarrera(nombreCarrera, year) {
+export async function obtenerResultadoCarrera(nombreCarrera, year) {
     try {
         const round = await obtenerRoundPorNombre(nombreCarrera, year); // Desestructuración del slug
+
+        //console.log('Round obtenido:', round);
 
         const url = `https://ergast.com/api/f1/${year}/${round}/results.json`; // Ej: "bahrain_2024"
         const res = await fetch(url);
@@ -23,5 +25,3 @@ async function obtenerResultadoCarrera(nombreCarrera, year) {
         return [];
     }
 }
-
-module.exports = obtenerResultadoCarrera;

@@ -1,4 +1,4 @@
-async function obtenerRoundPorNombre(nombreCarrera, anio) {
+export async function obtenerRoundPorNombre(nombreCarrera, anio) {
     try {
         const url = `https://ergast.com/api/f1/${anio}.json`;
         const res = await fetch(url);
@@ -21,5 +21,3 @@ async function obtenerRoundPorNombre(nombreCarrera, anio) {
         return null;
     }
 }
-
-module.exports = obtenerRoundPorNombre;

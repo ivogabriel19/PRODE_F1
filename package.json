@@ -2,8 +2,10 @@
   "name": "prode_f1",
   "version": "1.0.0",
   "description": "pronosticos de resultados de la F1",
-  "main": "app.js",
+  "main": "main.js",
+  "type": "module",
   "scripts": {
+  "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -1,10 +1,11 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const connectDB = require('./src/config/db');
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import {connectDB} from './config/db.js';
 
-const userRoutes = require('./src/routes/userRoutes');
-const predictionRoutes = require('./src/routes/predictionRoutes');
+import userRoutes from './routes/userRoutes.js';
+import predictionRoutes from './routes/predictionRoutes.js';
+import resultadosRoutes from './routes/resultadosRoutes.js';
 
 dotenv.config();
 connectDB();
@@ -16,6 +17,7 @@ app.use(express.json());
 // Rutas
 app.use('/api/users', userRoutes);
 app.use('/api/predictions', predictionRoutes);
+app.use('/api/resultados', resultadosRoutes);
 app.get('/', (req, res) => {
     res.send('F1 Prode API funcionando');
 });
@@ -27,8 +29,4 @@ mongoose.connect(process.env.MONGO_URI, {
 }).then(() => console.log("🟢 Conectado a MongoDB"))
     .catch(err => console.error("🔴 Error al conectar MongoDB:", err));
 
-// Iniciar servidor
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
-});
+export default app;

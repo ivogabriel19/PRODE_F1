@@ -1,7 +1,7 @@
-const express = require('express');
-const { submitPrediction } = require('../controllers/predictionController');
+import express from 'express';
+import { submitPrediction } from '../controllers/predictionController.js';
 const router = express.Router();
 
 router.post('/submit', submitPrediction);
 
-module.exports = router;
+export default router;

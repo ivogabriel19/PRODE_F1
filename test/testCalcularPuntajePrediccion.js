@@ -9,8 +9,8 @@ console.log(`Puntos obtenidos: ${puntos}`);
 */
 
 // Test para evaluar la predicción de una carrera
-const obtenerResultadosCarrera = require('../src/services/obtenerResultadoCarrera');
-const calcularPuntajePrediccion = require('../src/utils/calcularPuntajePrediccion');
+import { obtenerResultadoCarrera } from '../src/services/obtenerResultadoCarrera.js';
+import { calcularPuntajePrediccion } from '../src/utils/calcularPuntajePrediccion.js';
 
 const prediccion = ["max_verstappen", "leclerc", "norris"];
 
@@ -18,8 +18,8 @@ const nombreCarrera = "miami";
 const anio = 2024;
 
 async function evaluarPrediccion(prediccion, nombreCarrera, anio) {
-    const resultadoReal = await obtenerResultadosCarrera(nombreCarrera, anio);
-    const {puntos, res} = calcularPuntajePrediccion(prediccion, resultadoReal);
+    const resultadoReal = await obtenerResultadoCarrera(nombreCarrera, anio);
+    const puntos = calcularPuntajePrediccion(prediccion, resultadoReal);
     console.log(`Puntos obtenidos: ${puntos}`);
 }
 

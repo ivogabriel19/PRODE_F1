@@ -2,7 +2,7 @@
   "name": "prode_f1",
   "version": "1.0.0",
   "description": "pronosticos de resultados de la F1",
-  "main": "main.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +23,12 @@
   },
   "homepage": "https://github.com/ivogabriel19/PRODE_F1#readme",
   "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.15.0",
     "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }

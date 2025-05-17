@@ -1,4 +1,4 @@
-const calcularPuntaje = require('../services/calcularPuntaje');
+const calcularPuntaje = require('../src/services/calcularPuntaje');
 
 const prediccion = ["verstappen", "leclerc", "norris"];
 const resultado = ["leclerc", "verstappen", "norris"];

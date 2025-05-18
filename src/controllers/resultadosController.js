@@ -1,6 +1,7 @@
 // src/controllers/resultados.controller.js
-import {calcularPuntajePrediccion as evaluarPrediccion} from '../utils/calcularPuntajePrediccion.js';
-import {obtenerResultadoCarrera} from '../services/obtenerResultadoCarrera.js';
+import { calcularPuntajePrediccion as evaluarPrediccion } from '../utils/calcularPuntajePrediccion.js';
+import { obtenerResultadoCarrera } from '../services/obtenerResultadoCarrera.js';
+import { obtenerRoundPorNombre } from '../utils/obtenerRoundPorNombre.js';
 
 export async function evaluarProde(req, res) {
     try {
@@ -20,6 +21,16 @@ export async function evaluarProde(req, res) {
             puntos: resultado,
             resultadoReal
         });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
+export async function obtenerResultadosCarrera(req, res) {
+    try {
+        const { anio, nombreCarrera } = req.params;
+        const resultado = await obtenerResultadoCarrera(nombreCarrera, anio);
+        res.json({ resultado });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

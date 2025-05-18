@@ -2,9 +2,11 @@ import {obtenerRoundPorNombre} from '../utils/obtenerRoundPorNombre.js';
 
 export async function obtenerResultadoCarrera(nombreCarrera, year) {
     try {
+        //console.log('Nombre de la carrera:', nombreCarrera);
+        //console.log('Año de la carrera:', year);
         const round = await obtenerRoundPorNombre(nombreCarrera, year); // Desestructuración del slug
 
-        //console.log('Round obtenido:', round);
+        console.log('Round obtenido:', round);
 
         const url = `https://ergast.com/api/f1/${year}/${round}/results.json`; // Ej: "bahrain_2024"
         const res = await fetch(url);

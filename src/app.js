@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import {connectDB} from './config/db.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 import userRoutes from './routes/userRoutes.js';
 import predictionRoutes from './routes/predictionRoutes.js';
@@ -12,15 +14,17 @@ connectDB();
 
 const app = express();
 app.use(express.json());
-
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Rutas
 app.use('/api/users', userRoutes);
 app.use('/api/predictions', predictionRoutes);
 app.use('/api/resultados', resultadosRoutes);
-app.get('/', (req, res) => {
+app.get('/resultados/:anio/:nombreCarrera', resultadosRoutes);
+/*app.get('/', (req, res) => {
     res.send('F1 Prode API funcionando');
-});
+});*/
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Conexión a MongoDB
 mongoose.connect(process.env.MONGO_URI, {

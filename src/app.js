@@ -22,7 +22,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use('/api/users', userRoutes);
 app.use('/api/predictions', predictionRoutes);
 app.use('/api/resultados', resultadosRoutes);
-app.get('/resultados/:anio/:nombreCarrera', resultadosRoutes);
+app.get('/resultados/:anio/:nombreCarrera', resultadosRoutes); //FIXME: redundante?
 app.use("/api/carreras", obtenerRoutes);
 /*app.get('/', (req, res) => {
     res.send('F1 Prode API funcionando');

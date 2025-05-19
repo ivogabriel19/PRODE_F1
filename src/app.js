@@ -1,7 +1,7 @@
 import express from 'express';
-import mongoose from 'mongoose';
+//import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import {connectDB} from './config/db.js';
+//import {connectDB} from './config/db.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -11,7 +11,7 @@ import resultadosRoutes from './routes/resultadosRoutes.js';
 import obtenerRoutes from './routes/obtenerRoutes.js';
 
 dotenv.config();
-connectDB();
+//connectDB();
 
 const app = express();
 app.use(express.json());

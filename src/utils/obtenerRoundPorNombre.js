@@ -12,6 +12,8 @@ export async function obtenerRoundPorNombre(nombreCarrera, anio) {
             c.raceName.toLowerCase().includes(nombreCarrera.toLowerCase())
         );
 
+        //console.log("Carrera encontrada:", carreraEncontrada);
+
         if (!carreraEncontrada) throw new Error(`Carrera "${nombreCarrera}" no encontrada`);
 
         //console.log(`Carrera encontrada: ${carreraEncontrada.raceName}, Round: ${carreraEncontrada.round}`);

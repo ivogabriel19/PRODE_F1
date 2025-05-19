@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 //import {connectDB} from './config/db.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import {calcularPuntajePrediccion as calcularPuntaje} from "./utils/calcularPuntajePrediccion.js";
 
 import userRoutes from './routes/userRoutes.js';
 import predictionRoutes from './routes/predictionRoutes.js';

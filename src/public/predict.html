@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Prode - Prueba predicciones</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script defer src="js/prediccion.js"></script>
+</head>
+
+<body>
+    <h1>Adivina el podio</h1>
+    <form id="formulario">
+        <label for="anio">Año:</label>
+        <input type="number" id="anio" value="2024" required>
+
+        <label for="carrera">Nombre de la carrera:</label>
+        <input type="text" id="carrera" list="sugerencias" placeholder="Ej: Miami" required>
+        <datalist id="sugerencias"></datalist>
+
+        <label for="pilotoP1">Piloto P1:</label>
+        <input type="text" id="pilotoP1" list="sugerenciasP1" placeholder="" required>
+        <datalist id="sugerenciasP1"></datalist>
+        
+        <label for="pilotoP2">Piloto P2:</label>
+        <input type="text" id="pilotoP2" list="sugerenciasP2" placeholder="" required>
+        <datalist id="sugerenciasP2"></datalist>
+        
+        <label for="pilotoP3">Piloto P3:</label>
+        <input type="text" id="pilotoP3" list="sugerenciasP3" placeholder="" required>
+        <datalist id="sugerenciasP3"></datalist>
+        
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div id="resultado"></div>
+
+</body>
+
+</html>

@@ -1,37 +1,44 @@
-const coloresConstructores = {
-    mercedes: "#00D2BE",
-    red_bull: "#1E41FF",
-    ferrari: "#DC0000",
-    mclaren: "#FF8700",
-    aston_martin: "#006F62",
-    alpine: "#0090FF",
-    haas: "#B6BABD",
-    williams: "#005AFF",
-    alphatauri: "#2B4562",
-    sauber: "#900000", // ex Alfa Romeo
-};
-const logosConstructores = {
-    mercedes: "/img/constructors/mercedes.svg",
-    red_bull: "/img/constructors/red_bull.svg",
-    ferrari: "/img/constructors/ferrari.svg",
-    mclaren: "/img/constructors/mclaren.svg",
-    aston_martin: "/img/constructors/aston_martin.png",
-    alpine: "/img/constructors/alpine.svg",
-    haas: "/img/constructors/haas.png",
-    williams: "/img/constructors/williams.png",
-    rb: "/img/constructors/alphatauri.svg",
-    sauber: "/img/constructors/sauber.svg", // ex Alfa Romeo
-};
-
-const inputCarrera = document.getElementById("carrera");
 const inputAnio = document.getElementById("anio");
+const inputCarrera = document.getElementById("carrera");
 const datalist = document.getElementById("sugerencias");
+const inputPilotoP1 = document.getElementById("pilotoP1");
+const datalistP1 = document.getElementById("sugerenciasP1");
+const inputPilotoP2 = document.getElementById("pilotoP2");
+const datalistP2 = document.getElementById("sugerenciasP2");
+const inputPilotoP3 = document.getElementById("pilotoP3");
+const datalistP3 = document.getElementById("sugerenciasP3");
 const form = document.getElementById("formulario")
 
 let carrerasCache = {};
 
-function obtenerLogo(id) {
-    return logosConstructores[id] || "/img/constructors/default.png";
+async function cargarCarreras(anio) {
+    if (carrerasCache[anio]) return carrerasCache[anio];
+
+    try {
+        const res = await fetch(`/api/carreras/${anio}`);
+        const data = await res.json();
+        if (data.carreras) {
+            carrerasCache[anio] = data.carreras;
+            return data.carreras;
+        } else {
+            return [];
+        }
+    } catch (err) {
+        console.error("Error al obtener carreras:", err.error);
+        return [];
+    }
+}
+
+async function actualizarSugerencias() {
+    const anio = inputAnio.value || new Date().getFullYear();
+    const carreras = await cargarCarreras(anio);
+
+    datalist.innerHTML = "";
+    carreras.forEach(carrera => {
+        const option = document.createElement("option");
+        option.value = carrera;
+        datalist.appendChild(option);
+    });
 }
 
 async function submitForm(e) {
@@ -94,36 +101,6 @@ async function submitForm(e) {
         console.error("Error en el fetch:", err);
         contenedor.innerText = err.message || "Fallo al conectar con el servidor.";
     }
-}
-
-async function cargarCarreras(anio) {
-    if (carrerasCache[anio]) return carrerasCache[anio];
-
-    try {
-        const res = await fetch(`/api/carreras/${anio}`);
-        const data = await res.json();
-        if (data.carreras) {
-            carrerasCache[anio] = data.carreras;
-            return data.carreras;
-        } else {
-            return [];
-        }
-    } catch (err) {
-        console.error("Error al obtener carreras:", err.error);
-        return [];
-    }
-}
-
-async function actualizarSugerencias() {
-    const anio = inputAnio.value || new Date().getFullYear();
-    const carreras = await cargarCarreras(anio);
-
-    datalist.innerHTML = "";
-    carreras.forEach(carrera => {
-        const option = document.createElement("option");
-        option.value = carrera;
-        datalist.appendChild(option);
-    });
 }
 
 form.addEventListener("submit", submitForm);

@@ -10,11 +10,12 @@
 <body>
     <h1>Consulta de Resultados F1</h1>
     <form id="formulario">
-        <label for="carrera">Nombre de la carrera:</label>
-        <input type="text" id="carrera" value="Australia" required>
-
         <label for="anio">Año:</label>
         <input type="number" id="anio" value="2024" required>
+
+        <label for="carrera">Nombre de la carrera:</label>
+        <input type="text" id="carrera" list="sugerencias" placeholder="Ej: Miami" required>
+        <datalist id="sugerencias"></datalist>
 
         <button type="submit">Buscar</button>
     </form>

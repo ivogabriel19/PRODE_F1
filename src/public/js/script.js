@@ -10,8 +10,6 @@ const coloresConstructores = {
     alphatauri: "#2B4562",
     sauber: "#900000", // ex Alfa Romeo
 };
-
-
 const logosConstructores = {
     mercedes: "/img/constructors/mercedes.svg",
     red_bull: "/img/constructors/red_bull.svg",
@@ -25,10 +23,15 @@ const logosConstructores = {
     sauber: "/img/constructors/sauber.svg", // ex Alfa Romeo
 };
 
+const inputCarrera = document.getElementById("carrera");
+const inputAnio = document.getElementById("anio");
+const datalist = document.getElementById("sugerencias");
+
+let carrerasCache = {};
+
 function obtenerLogo(id) {
     return logosConstructores[id] || "/img/constructors/default.png";
 }
-
 
 document.getElementById("formulario").addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -90,3 +93,37 @@ document.getElementById("formulario").addEventListener("submit", async function 
         contenedor.innerText = err.message || "Fallo al conectar con el servidor.";
     }
 });
+
+async function cargarCarreras(anio) {
+    if (carrerasCache[anio]) return carrerasCache[anio];
+
+    try {
+        const res = await fetch(`/api/carreras/${anio}`);
+        const data = await res.json();
+        if (data.carreras) {
+            carrerasCache[anio] = data.carreras;
+            return data.carreras;
+        } else {
+            return [];
+        }
+    } catch (err) {
+        console.error("Error al obtener carreras:", err);
+        return [];
+    }
+}
+
+async function actualizarSugerencias() {
+    const anio = inputAnio.value || new Date().getFullYear();
+    const carreras = await cargarCarreras(anio);
+
+    datalist.innerHTML = "";
+    carreras.forEach(carrera => {
+        const option = document.createElement("option");
+        option.value = carrera;
+        datalist.appendChild(option);
+    });
+}
+
+// Actualiza al cambiar el año o al enfocar el campo carrera
+inputAnio.addEventListener("input", actualizarSugerencias);
+inputCarrera.addEventListener("focus", actualizarSugerencias);

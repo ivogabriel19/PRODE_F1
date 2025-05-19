@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import userRoutes from './routes/userRoutes.js';
 import predictionRoutes from './routes/predictionRoutes.js';
 import resultadosRoutes from './routes/resultadosRoutes.js';
+import obtenerRoutes from './routes/obtenerRoutes.js';
 
 dotenv.config();
 connectDB();
@@ -21,6 +22,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/predictions', predictionRoutes);
 app.use('/api/resultados', resultadosRoutes);
 app.get('/resultados/:anio/:nombreCarrera', resultadosRoutes);
+app.use("/api/carreras", obtenerRoutes);
 /*app.get('/', (req, res) => {
     res.send('F1 Prode API funcionando');
 });*/

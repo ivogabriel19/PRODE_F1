@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>F1 Prode - Prueba predicciones</title>
     <link rel="stylesheet" href="/css/styles.css" />
+    <link href='/css/boxicons/boxicons.css' rel='stylesheet'>
     <script defer src="js/prediccion.js"></script>
 </head>
 
@@ -22,20 +23,24 @@
         <label for="pilotoP1">Piloto P1:</label>
         <input type="text" id="pilotoP1" list="sugerenciasP1" placeholder="" required>
         <datalist id="sugerenciasP1"></datalist>
-        
+
         <label for="pilotoP2">Piloto P2:</label>
         <input type="text" id="pilotoP2" list="sugerenciasP2" placeholder="" required>
         <datalist id="sugerenciasP2"></datalist>
-        
+
         <label for="pilotoP3">Piloto P3:</label>
         <input type="text" id="pilotoP3" list="sugerenciasP3" placeholder="" required>
         <datalist id="sugerenciasP3"></datalist>
-        
+
         <button type="submit">Buscar</button>
     </form>
 
     <div id="resultado"></div>
     <div id="resultadoCarrera"></div>
+
+    <a href="index.html" class="btn-flotante">
+        <i class='bx  bx-reply-big'  style='color:#ffffff'></i> 
+    </a>
 
 </body>
 

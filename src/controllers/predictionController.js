@@ -1,6 +1,6 @@
 import Prediction from '../models/prediction.js';
 import { calcularPuntajePrediccion } from '../utils/calcularPuntajePrediccion.js';
-import { obtenerResultadoCompletoCarrera } from '../services/obtenerResultadoCompletoCarrera.js'; // Asegúrate de tener esta función
+import { obtenerResultadoCarrera } from '../services/obtenerResultadoCarrera.js'; // Asegúrate de tener esta función
 
 
 export async function submitPrediction (req, res) {
@@ -23,7 +23,7 @@ export async function procesarPrediction (req, res) {
     }
 
     // Obtener los resultados reales de la carrera
-    const resultadoReal = await obtenerResultadoCompletoCarrera(carrera, anio);
+    const resultadoReal = await obtenerResultadoCarrera(carrera, anio);
     if (!resultadoReal || resultadoReal.length === 0) {
       return res.status(404).json({ error: 'No se encontraron resultados para la carrera especificada.' });
     }

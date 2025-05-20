@@ -100,7 +100,7 @@ async function cargarCarreras(anio) {
     if (carrerasCache[anio]) return carrerasCache[anio];
 
     try {
-        const res = await fetch(`/api/carreras/${anio}`);
+        const res = await fetch(`/api/obtener/carreras/${anio}`);
         const data = await res.json();
         if (data.carreras) {
             carrerasCache[anio] = data.carreras;

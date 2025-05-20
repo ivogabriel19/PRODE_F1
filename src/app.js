@@ -23,7 +23,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/predictions', predictionRoutes);
 app.use('/api/resultados', resultadosRoutes);
 app.get('/resultados/:anio/:nombreCarrera', resultadosRoutes); //FIXME: redundante?
-app.use("/api/carreras", obtenerRoutes);
+app.use("/api/obtener", obtenerRoutes);
 /*app.get('/', (req, res) => {
     res.send('F1 Prode API funcionando');
 });*/

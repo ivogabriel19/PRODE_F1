@@ -1,7 +1,8 @@
 import express from 'express';
-import { obtenerCarrerasPorAnio } from '../controllers/obtenerController.js';
+import { obtenerCarrerasPorAnio, obtenerConductoresPorAnio } from '../controllers/obtenerController.js';
 const router = express.Router();
 
-router.get('/:anio', obtenerCarrerasPorAnio);
+router.get('/carreras/:anio', obtenerCarrerasPorAnio);
+router.get('/conductores/:anio', obtenerConductoresPorAnio);
 
 export default router;

@@ -35,16 +35,18 @@ const datalistP3 = document.getElementById("sugerenciasP3");
 const form = document.getElementById("formulario")
 
 let carrerasCache = {};
+let pilotosCache = {};
 
 function obtenerLogo(id) {
     return logosConstructores[id] || "/img/constructors/default.png";
 }
 
 async function cargarCarreras(anio) {
+    //console.log("Cargando carreras para el año:", anio);
     if (carrerasCache[anio]) return carrerasCache[anio];
 
     try {
-        const res = await fetch(`/api/carreras/${anio}`);
+        const res = await fetch(`/api/obtener/carreras/${anio}`);
         const data = await res.json();
         if (data.carreras) {
             carrerasCache[anio] = data.carreras;
@@ -67,6 +69,41 @@ async function actualizarSugerencias() {
         const option = document.createElement("option");
         option.value = carrera;
         datalist.appendChild(option);
+    });
+}
+
+async function cargarPilotos(anio) {
+    //console.log("Cargando pilotos para el año:", anio);
+    if (pilotosCache[anio]) return pilotosCache[anio];
+    try {
+        const res = await fetch(`/api/obtener/conductores/${anio}`);
+        const data = await res.json();
+        //console.log("Respuesta del servidor:", data);
+        if (data.conductores) {
+            pilotosCache[anio] = data.conductores;
+            //console.log("Pilotos obtenidos:", data.conductores);
+            return data.conductores;
+        } else {
+            return [];
+        }
+    } catch (err) {
+        console.error("Error al obtener pilotos:", err);
+        return [];
+    }
+}
+
+async function actualizarPilotos() {
+    console.log("Actualizando pilotos");
+    const anio = inputAnio.value || new Date().getFullYear();
+    const pilotos = await cargarPilotos(anio);
+
+    [datalistP1, datalistP2, datalistP3].forEach(dlist => {
+        dlist.innerHTML = "";
+        pilotos.forEach(piloto => {
+            const option = document.createElement("option");
+            option.value = piloto;
+            dlist.appendChild(option);
+        });
     });
 }
 
@@ -173,5 +210,9 @@ async function submitForm(e) {
 
 form.addEventListener("submit", submitForm);
 // Actualiza al cambiar el año o al enfocar el campo carrera
-inputAnio.addEventListener("input", actualizarSugerencias);
+inputAnio.addEventListener("input", () => {
+    actualizarSugerencias();
+    actualizarPilotos();
+});
 inputCarrera.addEventListener("focus", actualizarSugerencias);
+inputPilotoP1.addEventListener("focus", actualizarPilotos);

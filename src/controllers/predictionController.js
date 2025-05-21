@@ -7,7 +7,7 @@ export async function submitPrediction(req, res) {
 
   try {
     // Obtener resultados reales de la carrera desde la API
-    const resultadosReales = await obtenerResultadosCarrera(raceYear, raceId);
+    const resultadosReales = await obtenerResultadoCarrera(raceId, raceYear);
 
     if (!resultadosReales) {
       return res.status(404).json({ message: "No se encontraron resultados para esa carrera." });

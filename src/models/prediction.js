@@ -3,7 +3,9 @@ import mongoose from 'mongoose';
 const predictionSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   raceId: String, // de la API de F1
+  raceYear: Number,
   predictions: [String], // lista de IDs de pilotos (por posición)
+  points: Number,
   submittedAt: { type: Date, default: Date.now }
 });
 

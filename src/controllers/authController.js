@@ -27,7 +27,10 @@ export async function login(req, res) {
   const { username, password } = req.body;
   try {
     const user = await User.findOne({ username });
+    console.log(user); //FIXME:OK
     if (!user) return res.status(401).json({ message: "Usuario no encontrado" });
+
+    console.log(password)
 
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) return res.status(401).json({ message: "Contraseña incorrecta" });

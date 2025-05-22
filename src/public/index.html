@@ -7,9 +7,32 @@
     <title>F1 Prode - Prueba predicciones</title>
     <link rel="stylesheet" href="/css/styles.css" />
     <script defer src="js/prediccion.js"></script>
+    <script defer src="js/auth.js"></script>
+
 </head>
 
 <body>
+    <header id="auth-header">
+        <span id="welcome-user" style="margin-right: 1rem;"></span>
+        <div id="auth-buttons">
+            <button id="login-btn">Login</button>
+            <button id="register-btn">Registrarse</button>
+            <button id="logout-btn" style="display: none;">Logout</button>
+        </div>
+    </header>
+
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <h2 id="modal-title">Login</h2>
+            <form id="auth-form">
+                <input type="text" id="username" placeholder="Usuario" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <button type="submit" id="submit-auth">Ingresar</button>
+            </form>
+        </div>
+    </div>
+
     <h1>Adivina el podio</h1>
     <form id="formulario">
         <label for="anio">Año:</label>

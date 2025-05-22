@@ -25,10 +25,14 @@
   },
   "homepage": "https://github.com/ivogabriel19/PRODE_F1#readme",
   "dependencies": {
+    "@supabase/supabase-js": "^2.49.8",
+    "bcryptjs": "^3.0.2",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.16.0",
     "mongoose": "^8.15.0",
+    "multer": "^2.0.0",
     "picocolors": "^1.1.1"
   },
   "devDependencies": {

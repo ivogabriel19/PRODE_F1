@@ -19,7 +19,7 @@ function checkAuthStatus() {
     loginBtn.style.display = 'none';
     registerBtn.style.display = 'none';
     logoutBtn.style.display = 'inline-block';
-    welcomeUser.textContent = `Hola, ${username}`;
+    welcomeUser.textContent = `Hola ${username}🏎️`;
   } else {
     loginBtn.style.display = 'inline-block';
     registerBtn.style.display = 'inline-block';

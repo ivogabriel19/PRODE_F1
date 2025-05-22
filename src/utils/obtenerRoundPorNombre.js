@@ -2,7 +2,7 @@ export async function obtenerRoundPorNombre(nombreCarrera, anio) {
     try {
         const url = `https://ergast.com/api/f1/${anio}.json`;
         const res = await fetch(url);
-        console.log("Consultando: ", url);
+        //console.log("Consultando: ", url);
         if (!res.ok) throw new Error(`Error HTTP: ${res.status}`);
         const data = await res.json();
 

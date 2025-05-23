@@ -105,8 +105,8 @@ async function actualizarPilotos() {
 async function submitForm(e) {
   e.preventDefault();
 
-  const anio = document.getElementById("anio").value;
-  const carrera = document.getElementById("carrera").value;
+  const raceYear = document.getElementById("anio").value;
+  const raceId = document.getElementById("carrera").value;
   const pilotoP1 = document.getElementById("pilotoP1").value;
   const pilotoP2 = document.getElementById("pilotoP2").value;
   const pilotoP3 = document.getElementById("pilotoP3").value;
@@ -114,12 +114,12 @@ async function submitForm(e) {
   const contenedor = document.getElementById("resultado");
 
   try {
-    let prediction = [pilotoP1, pilotoP2, pilotoP3];
+    let prediccion = [pilotoP1, pilotoP2, pilotoP3];
     let userId = getUserIdFromToken;
     const response = await fetch("/api/predictions/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId, carrera, anio, prediction }),
+      body: JSON.stringify({ userId, raceId, raceYear, prediccion }),
     });
 
     const data = await response.json();

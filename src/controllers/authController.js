@@ -26,7 +26,7 @@ export async function login(req, res) {
 
   try {
     const user = await User.findOne({ username });
-    console.log("🔎 Usuario encontrado:", user);
+    //console.log("🔎 Usuario encontrado:", user);
 
     if (!user) return res.status(401).json({ message: "Usuario no encontrado" });
 
@@ -39,6 +39,7 @@ export async function login(req, res) {
     // }
 
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "7d" });
+    console.log("tokenJWT de",username,":", token);
     res.json({ token });
   } catch (err) {
     console.error("🧨 Error en login:", err);

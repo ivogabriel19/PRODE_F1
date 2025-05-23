@@ -10,6 +10,8 @@ const authForm = document.getElementById('auth-form');
 const usernameInput = document.getElementById('username');
 const passwordInput = document.getElementById('password');
 
+const mainContainer = document.querySelector('.main-container');
+
 let mode = 'login';
 
 function checkAuthStatus() {
@@ -19,12 +21,13 @@ function checkAuthStatus() {
     loginBtn.style.display = 'none';
     registerBtn.style.display = 'none';
     logoutBtn.style.display = 'inline-block';
-    welcomeUser.textContent = `Hola ${username}🏎️`;
+    welcomeUser.textContent = `Hola ${username}`;
   } else {
     loginBtn.style.display = 'inline-block';
     registerBtn.style.display = 'inline-block';
     logoutBtn.style.display = 'none';
-    welcomeUser.textContent = '';
+    mainContainer.style.display = 'none';
+    welcomeUser.textContent = 'PRODE_F1';
   }
 }
 

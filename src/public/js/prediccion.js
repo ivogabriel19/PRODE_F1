@@ -8,29 +8,9 @@ const datalistP2 = document.getElementById("sugerenciasP2");
 const inputPilotoP3 = document.getElementById("pilotoP3");
 const datalistP3 = document.getElementById("sugerenciasP3");
 const form = document.getElementById("formulario");
-const mainContainer = document.querySelector(".main-container");
 
 let carrerasCache = {};
 let pilotosCache = {};
-
-const token = localStorage.getItem("token");
-const username = localStorage.getItem("username");
-if (!token && !username) {
-    //mainContainer.style.display = "none";
-}
-
-function getUserIdFromToken() {
-  if (!token) return null;
-
-  try {
-    const payload = token.split(".")[1];
-    const decoded = JSON.parse(atob(payload));
-    return decoded.userId;
-  } catch (err) {
-    console.error("Token inválido", err);
-    return null;
-  }
-}
 
 function obtenerLogo(id) {
   return logosConstructores[id] || "/img/constructors/default.png";

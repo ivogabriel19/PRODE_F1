@@ -12,7 +12,7 @@ body {
     min-height: 100vh;
 }
 
-header{
+header {
     background-color: #e2282877;
     padding: 1rem;
     display: flex;
@@ -85,7 +85,7 @@ button:hover {
     height: 5rem;
 }
 
-.hd-container{
+.hd-container {
     display: flex;
     gap: 1rem;
     align-items: center;
@@ -97,10 +97,10 @@ button:hover {
     height: 100%;
 }
 
-#welcome-user{
+#welcome-user {
     padding: 1rem;
     background-color: #1f1f1f;
-    border-radius: 0.5rem;    
+    border-radius: 0.5rem;
     min-width: 5rem;
     height: 90%;
 }
@@ -245,4 +245,73 @@ button:hover {
     font-size: 1.5rem;
     cursor: pointer;
     background-color: #e10600;
+}
+
+/* Estilos para el contenedor */
+.contenedor-tabla {
+max-width: 600px;
+margin: 40px auto;
+padding: 20px;
+background-color: #f4f4f4; /* fondo neutro */
+border-radius: 12px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+overflow-x: auto;
+}
+
+.contenedor-tabla table {
+width: 100%;
+border-collapse: collapse;
+font-family: 'Segoe UI', sans-serif;
+background-color: #ffffff; /* fondo blanco para la tabla */
+}
+
+.contenedor-tabla thead {
+background-color: #1e3a8a; /* azul oscuro /
+color: #ffffff; / texto blanco */
+}
+
+.contenedor-tabla th {
+text-align: left;
+padding: 12px 16px;
+font-weight: 600;
+letter-spacing: 0.5px;
+}
+
+.contenedor-tabla td {
+padding: 10px 16px;
+border-bottom: 1px solid #e0e0e0;
+color: #333; /* texto oscuro para celdas */
+}
+
+/* Alternancia de filas */
+.contenedor-tabla tbody tr:nth-child(even) {
+background-color: #f9fafb;
+}
+
+.contenedor-tabla tbody tr:hover {
+background-color: #e0f2fe;
+}
+
+/* Íconos para el podio */
+.contenedor-tabla tbody tr:first-child td:first-child::before {
+content: "🏆 ";
+}
+.contenedor-tabla tbody tr:nth-child(2) td:first-child::before {
+content: "🥈 ";
+}
+.contenedor-tabla tbody tr:nth-child(3) td:first-child::before {
+content: "🥉 ";
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+.contenedor-tabla {
+padding: 10px;
+font-size: 14px;
+}
+
+.contenedor-tabla th,
+.contenedor-tabla td {
+padding: 8px;
+}
 }

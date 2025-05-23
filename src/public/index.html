@@ -1,69 +1,123 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>F1 Prode - Prueba predicciones</title>
-    <link rel="icon" href="./img/racing.ico" type="image/x-icon">
+    <link rel="icon" href="./img/racing.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/css/styles.css" />
     <script defer src="js/prediccion.js"></script>
     <script defer src="js/auth.js"></script>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <header id="auth-header">
-        <div class="hd-container">
-            <img src="./img/racing.png" alt="Logo" class="logo">
-            <span id="welcome-user"></span>
-        </div>
-        <div id="auth-buttons">
-            <button id="login-btn">Login</button>
-            <button id="register-btn">Registrarse</button>
-            <button id="logout-btn" style="display: none;">Logout</button>
-        </div>
+      <div class="hd-container">
+        <img src="./img/racing.png" alt="Logo" class="logo" />
+        <span id="welcome-user"></span>
+      </div>
+      <div id="auth-buttons">
+        <button id="login-btn">Login</button>
+        <button id="register-btn">Registrarse</button>
+        <button id="logout-btn" style="display: none">Logout</button>
+      </div>
     </header>
 
     <div id="auth-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="close-modal">&times;</span>
-            <h2 id="modal-title">Login</h2>
-            <form id="auth-form">
-                <input type="text" id="username" placeholder="Usuario" required>
-                <input type="password" id="password" placeholder="Contraseña" required>
-                <button type="submit" id="submit-auth">Ingresar</button>
-            </form>
-        </div>
+      <div class="modal-content">
+        <span class="close-btn" id="close-modal">&times;</span>
+        <h2 id="modal-title">Login</h2>
+        <form id="auth-form">
+          <input type="text" id="username" placeholder="Usuario" required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Contraseña"
+            required
+          />
+          <button type="submit" id="submit-auth">Ingresar</button>
+        </form>
+      </div>
     </div>
 
     <main class="main-container">
-        <h1>Enviar prediccion🍾🏆🍾</h1>
-        <form id="formulario">
-            <label for="anio">Año:</label>
-            <input type="number" id="anio" value="2025" disabled required>
+      <h1>Enviar prediccion🍾🏆🍾</h1>
+      <form id="formulario">
+        <label for="anio">Año:</label>
+        <input type="number" id="anio" value="2025" disabled required />
 
-            <label for="carrera">Nombre de la carrera:</label>
-            <input type="text" id="carrera" list="sugerencias" placeholder="Ej: Miami" required>
-            <datalist id="sugerencias"></datalist>
+        <label for="carrera">Nombre de la carrera:</label>
+        <input
+          type="text"
+          id="carrera"
+          list="sugerencias"
+          placeholder="Ej: Miami"
+          required
+        />
+        <datalist id="sugerencias"></datalist>
 
-            <label for="pilotoP1">Piloto P1🥇</label>
-            <input type="text" id="pilotoP1" list="sugerenciasP1" placeholder="" required>
-            <datalist id="sugerenciasP1"></datalist>
+        <label for="pilotoP1">Piloto P1🥇</label>
+        <input
+          type="text"
+          id="pilotoP1"
+          list="sugerenciasP1"
+          placeholder=""
+          required
+        />
+        <datalist id="sugerenciasP1"></datalist>
 
-            <label for="pilotoP2">Piloto P2🥈</label>
-            <input type="text" id="pilotoP2" list="sugerenciasP2" placeholder="" required>
-            <datalist id="sugerenciasP2"></datalist>
+        <label for="pilotoP2">Piloto P2🥈</label>
+        <input
+          type="text"
+          id="pilotoP2"
+          list="sugerenciasP2"
+          placeholder=""
+          required
+        />
+        <datalist id="sugerenciasP2"></datalist>
 
-            <label for="pilotoP3">Piloto P3🥉</label>
-            <input type="text" id="pilotoP3" list="sugerenciasP3" placeholder="" required>
-            <datalist id="sugerenciasP3"></datalist>
+        <label for="pilotoP3">Piloto P3🥉</label>
+        <input
+          type="text"
+          id="pilotoP3"
+          list="sugerenciasP3"
+          placeholder=""
+          required
+        />
+        <datalist id="sugerenciasP3"></datalist>
 
-            <button type="submit">Buscar</button>
-        </form>
+        <button type="submit">Buscar</button>
+      </form>
 
-        <div id="resultado"></div>
+      <div id="resultado"></div>
     </main>
-</body>
 
+    <section class="contenedor-tabla">
+      <h1>leaderboard</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Usuario</th>
+            <th>Puntaje</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard-body"></tbody>
+      </table>
+      <script>
+        async function cargarLeaderboard() {
+          const res = await fetch("/api/users/leaderboard");
+          const data = await res.json();
+          const tbody = document.getElementById("leaderboard-body");
+          tbody.innerHTML = "";
+          data.forEach((user, index) => {
+            tbody.innerHTML += ` <tr> <td>${index + 1}</td> <td>${
+              user.username
+            }</td> <td>${user.score}</td> </tr> `;
+          });
+        }
+        cargarLeaderboard();
+      </script>
+    </section>
+  </body>
 </html>

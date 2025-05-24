@@ -12,6 +12,26 @@ const form = document.getElementById("formulario");
 let carrerasCache = {};
 let pilotosCache = {};
 
+const token = localStorage.getItem("token");
+const username = localStorage.getItem("username");
+if (!token && !username) {
+  //mainContainer.style.display = "none";
+}
+
+async function getUserIdFromToken() {
+  if (!token) return null;
+
+  try {
+    const payload = token.split(".")[1];
+    const decoded = JSON.parse(atob(payload));
+    //console.log("userId decodificado:", decoded.userId);
+    return decoded.userId;
+  } catch (err) {
+    console.error("Token inválido", err);
+    return null;
+  }
+}
+
 function obtenerLogo(id) {
   return logosConstructores[id] || "/img/constructors/default.png";
 }
@@ -38,24 +58,13 @@ async function cargarCarreras(anio) {
 async function actualizarSugerencias() {
   const anio = inputAnio.value || new Date().getFullYear();
   const carreras = await cargarCarreras(anio);
-  console.log("Carreras obtenidas:", carreras);
 
   datalist.innerHTML = "";
-  // carreras.forEach((carrera) => {
-  //   const option = document.createElement("option");
-  //   option.value = carrera;
-  //   datalist.appendChild(option);
-  // });
-  if (Array.isArray(carreras)) {
-    carreras.forEach((carrera) => {
-      const option = document.createElement("option");
-      option.value = carrera;
-      datalist.appendChild(option);
-    });
-  } else {
-    console.warn("No se pudo cargar la lista de carreras. Valor recibido:", carreras);
-  }
-
+  carreras.forEach((carrera) => {
+    const option = document.createElement("option");
+    option.value = carrera;
+    datalist.appendChild(option);
+  });
 }
 
 async function cargarPilotos(anio) {
@@ -105,11 +114,14 @@ async function submitForm(e) {
   const contenedor = document.getElementById("resultado");
 
   try {
-    let prediccion = [pilotoP1, pilotoP2, pilotoP3];
-    let userId = getUserIdFromToken;
+    let prediccion = {P1:pilotoP1,P2:pilotoP2,P3:pilotoP3};
+    let userId = await getUserIdFromToken();
     const response = await fetch("/api/predictions/submit", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
       body: JSON.stringify({ userId, raceId, raceYear, prediccion }),
     });
 

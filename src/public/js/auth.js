@@ -26,8 +26,8 @@ function checkAuthStatus() {
     loginBtn.style.display = 'inline-block';
     registerBtn.style.display = 'inline-block';
     logoutBtn.style.display = 'none';
-    mainContainer.style.display = 'none';
     welcomeUser.textContent = 'PRODE_F1';
+    mainContainer.style.display = 'none';
   }
 }
 

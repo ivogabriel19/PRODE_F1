@@ -3,9 +3,9 @@ import { calcularPuntajePrediccion } from "../utils/calcularPuntajePrediccion.js
 import { verificarFechaCarrera } from "../utils/verificarFechaCarrera.js";
 import { obtenerResultadoCarrera } from "../services/obtenerResultadoCarrera.js"; // Asegúrate de tener esta función
 
-export async function submitPrediction(req, res) {
-  procesarPrediction(req, res)
-}
+// export async function submitPrediction(req, res) {
+//   procesarPrediction(req, res)
+// }
 
 /*
 export async function submitPrediction(req, res) {
@@ -51,7 +51,7 @@ export async function procesarPrediction(req, res) {
     const { anio, carrera, pilotoP1, pilotoP2, pilotoP3 } = req.body;
 
     if (!anio || !carrera || !pilotoP1 || !pilotoP2 || !pilotoP3) {
-      return res.status(400).json({ error: "Faltan datos en la solicitud." });
+      return res.status(400).json({ error: "Faltan datos en la solicitud.", datos: req.body });
     }
 
     // Obtener los resultados reales de la carrera
@@ -88,7 +88,7 @@ export const crearPrediccion = async (req, res) => {
       return res.status(400).json({ message: "Ya enviaste una predicción para esta carrera." });
 
     await nueva.save();
-    res.status(201).json(nueva);
+    res.status(201).json({message:nueva});
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

@@ -1,5 +1,5 @@
 import express from 'express';
-import { submitPrediction, procesarPrediction } from '../controllers/predictionController.js';
+import { procesarPrediction } from '../controllers/predictionController.js';
 import {
   crearPrediccion,
   obtenerMisPredicciones,
@@ -9,8 +9,8 @@ import {
 import { verificarJWT } from '../middlewares/authMiddleware.js';
 const router = express.Router();
 
-router.post('/submit', submitPrediction); //FIXME: obsoleto?
-router.post('/processPrediction', procesarPrediction); //FIXME: obsoleto?
+router.post('/submit', verificarJWT, crearPrediccion); //FIXME: obsoleto?
+router.post('/processPrediction', crearPrediccion); //FIXME: obsoleto?
 
 router.post('/', verificarJWT, crearPrediccion);
 router.get('/', verificarJWT, obtenerMisPredicciones);

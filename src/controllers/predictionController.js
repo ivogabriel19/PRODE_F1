@@ -66,9 +66,9 @@ export async function procesarPrediction(req, res) {
     const prediccionUsuario = [pilotoP1, pilotoP2, pilotoP3];
 
     // Calcular el puntaje
-    const puntaje = calcularPuntajePrediccion(prediccionUsuario, resultadoReal);
+    const puntajes = calcularPuntajePrediccion(prediccionUsuario, resultadoReal);
 
-    res.json({ puntaje });
+    res.json({ puntajes });
   } catch (error) {
     console.error("Error al procesar la predicción:", error);
     res.status(500).json({ error: "Error interno del servidor." });

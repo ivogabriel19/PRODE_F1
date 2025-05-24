@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <script defer src="js/prediccion.js"></script>
     <script defer src="js/auth.js"></script>
+    <script defer src="js/table.js"></script>
   </head>
 
   <body>
@@ -100,24 +101,12 @@
             <th>#</th>
             <th>Usuario</th>
             <th>Puntaje</th>
+            <th>Aciertos</th>
+            <th>Perfect</th>
           </tr>
         </thead>
         <tbody id="leaderboard-body"></tbody>
       </table>
-      <script>
-        async function cargarLeaderboard() {
-          const res = await fetch("/api/users/leaderboard");
-          const data = await res.json();
-          const tbody = document.getElementById("leaderboard-body");
-          tbody.innerHTML = "";
-          data.forEach((user, index) => {
-            tbody.innerHTML += ` <tr> <td>${index + 1}</td> <td>${
-              user.username
-            }</td> <td>${user.score}</td> </tr> `;
-          });
-        }
-        cargarLeaderboard();
-      </script>
     </section>
   </body>
 </html>

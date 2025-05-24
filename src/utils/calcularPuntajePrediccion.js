@@ -1,5 +1,6 @@
 export function calcularPuntajePrediccion(prediccion, resultadoReal) {
     let puntos = 0;
+    let coincidenciasExactas = 0;
 
     //console.log('Predicción:', prediccion);
     //console.log('Resultado real:', resultadoReal);
@@ -21,6 +22,7 @@ export function calcularPuntajePrediccion(prediccion, resultadoReal) {
         // Está en el top 3 pero no en la misma posición
         else if (top3.includes(pilotoNormalizado)) {
             puntos += 5;
+            coincidenciasExactas++;
             console.log(`Puntos por coincidencia en el top 3 (${pilotoPredicho}): +5`);
         }
         // Está en el top 10 pero no en el top 3
@@ -31,6 +33,8 @@ export function calcularPuntajePrediccion(prediccion, resultadoReal) {
         // Si no está en el top 10, 0 puntos (ni hace falta sumar)
     });
 
+    const prediccionPerfecta = puntos === 30
+
     console.log('Puntos obtenidos:', puntos);
-    return puntos;
+    return { puntos, coincidenciasExactas, prediccionPerfecta };
 }

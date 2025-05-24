@@ -13,7 +13,7 @@ export async function registerUser(req, res) {
 
 export async function obtenerLeaderboard(req, res) {
   try {
-    const topUsers = await User.find({}, "username score").sort({ score: -1 }).limit(10); // top 10 por puntaje
+    const topUsers = await User.find({}, "username score exactMatches perfectPredictions").sort({ score: -1 }).limit(10); // top 10 por puntaje
     res.json(topUsers);
   } catch (err) {
     console.error("Error al obtener leaderboard:", err.message);

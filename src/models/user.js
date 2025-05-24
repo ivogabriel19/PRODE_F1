@@ -5,6 +5,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   email: String,
   score: { type: Number, default: 0 },
+  exactMatches: { type: Number, default: 0 },
+  perfectPredictions: { type: Number, default: 0 },
   createdAt: { type: Date, default: Date.now }
 });
 

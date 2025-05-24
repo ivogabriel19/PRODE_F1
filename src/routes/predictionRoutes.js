@@ -9,8 +9,8 @@ import {
 import { verificarJWT } from '../middlewares/authMiddleware.js';
 const router = express.Router();
 
-router.post('/submit', submitPrediction);
-router.post('/processPrediction', procesarPrediction);
+router.post('/submit', submitPrediction); //FIXME: obsoleto?
+router.post('/processPrediction', procesarPrediction); //FIXME: obsoleto?
 
 router.post('/', verificarJWT, crearPrediccion);
 router.get('/', verificarJWT, obtenerMisPredicciones);

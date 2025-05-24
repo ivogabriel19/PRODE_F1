@@ -38,13 +38,24 @@ async function cargarCarreras(anio) {
 async function actualizarSugerencias() {
   const anio = inputAnio.value || new Date().getFullYear();
   const carreras = await cargarCarreras(anio);
+  console.log("Carreras obtenidas:", carreras);
 
   datalist.innerHTML = "";
-  carreras.forEach((carrera) => {
-    const option = document.createElement("option");
-    option.value = carrera;
-    datalist.appendChild(option);
-  });
+  // carreras.forEach((carrera) => {
+  //   const option = document.createElement("option");
+  //   option.value = carrera;
+  //   datalist.appendChild(option);
+  // });
+  if (Array.isArray(carreras)) {
+    carreras.forEach((carrera) => {
+      const option = document.createElement("option");
+      option.value = carrera;
+      datalist.appendChild(option);
+    });
+  } else {
+    console.warn("No se pudo cargar la lista de carreras. Valor recibido:", carreras);
+  }
+
 }
 
 async function cargarPilotos(anio) {

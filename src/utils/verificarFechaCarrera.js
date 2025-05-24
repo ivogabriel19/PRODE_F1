@@ -1,6 +1,6 @@
 export async function verificarFechaCarrera(year, raceName) {
   try {
-    const res = await fetch(`https://ergast.com/api/f1/${year}.json`);
+    const res = await fetch(`https://api.jolpi.ca/ergast/f1/${year}.json`);
     const data = await res.json();
     const carreras = data.MRData.RaceTable.Races;
     const carrera = carreras.find((c) =>

@@ -8,7 +8,7 @@ export async function obtenerResultadoCompletoCarrera(nombreCarrera, year) {
 
         //console.log('Round obtenido:', round);
 
-        const url = `https://ergast.com/api/f1/${year}/${round}/results.json`; // Ej: "bahrain_2024"
+        const url = `https://api.jolpi.ca/ergast/f1/${year}/${round}/results.json`; // Ej: "bahrain_2024"
         const res = await fetch(url);
         //console.log("Consultando: ", url);
 

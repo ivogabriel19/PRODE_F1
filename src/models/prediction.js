@@ -8,6 +8,7 @@ const predictionSchema = new mongoose.Schema({
   },
   raceId: String, // de la API de F1
   raceYear: Number,
+  raceDate: { type: Date, required: true },
   prediccion: {
     P1: String,
     P2: String,

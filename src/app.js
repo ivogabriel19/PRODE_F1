@@ -11,6 +11,7 @@ import predictionRoutes from './routes/predictionRoutes.js';
 import resultadosRoutes from './routes/resultadosRoutes.js';
 import obtenerRoutes from './routes/obtenerRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import adminRoutes from "./routes/admin.js";
 
 dotenv.config();
 connectDB();
@@ -25,6 +26,7 @@ app.use('/api/predictions', predictionRoutes);
 app.use('/api/resultados', resultadosRoutes);
 app.use('/api/obtener', obtenerRoutes);
 app.use('/api/auth', authRoutes);
+app.use("/admin", adminRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 
 //mongo & mongoose sandbox routes

@@ -1,0 +1,63 @@
+import Prediction from "../models/Prediction.js";
+import Result from "../models/Result.js";
+import User from "../models/User.js";
+import { calcularPuntajePrediccion } from "./calcularPuntajePrediccion.js";
+import { obtenerResultadoCarrera } from "../services/obtenerResultadoCarrera.js";
+
+export async function processPredictions() {
+  try {
+    const now = new Date();
+    const predictions = await Prediction.find({ raceDate: { $lt: new Date() } });
+    if (!predictions || predictions.length === 0) {
+      console.log("No hay predicciones vencidas para procesar.");
+      return;
+    }
+
+    for (const prediction of predictions) {
+      const { raceId, raceYear, userId, prediccion } = prediction;
+
+      // 1. Obtener resultado real desde la función proporcionada
+      const resultadoReal = await obtenerResultadoCarrera(raceId, raceYear); // raceId = nombre carrera
+
+      if (!resultadoReal || resultadoReal.length === 0) {
+        console.log(`Sin resultados para carrera ${raceId} ${raceYear}`);
+        continue;
+      }
+
+      // 2. Calcular puntaje
+      const prediccionArray = [prediccion.P1, prediccion.P2, prediccion.P3];
+      const { puntos, coincidenciasExactas, prediccionPerfecta } =
+        calcularPuntajePrediccion(prediccionArray, resultadoReal);
+
+      // 3. Crear result
+      await Result.create({
+        userId,
+        raceId,
+        raceYear,
+        prediccion,
+        submittedAt: prediction.submittedAt,
+        score: puntos,
+        processedAt: new Date(),
+      });
+
+      // 4. Eliminar prediction original
+      await Prediction.deleteOne({ _id: prediction._id });
+
+      // 5. Actualizar usuario
+      await User.findByIdAndUpdate(userId, {
+        $inc: {
+          score: puntos,
+          exactMatches: coincidenciasExactas,
+          perfectPredictions: prediccionPerfecta ? 1 : 0,
+        },
+      });
+
+      console.log(`✔ Procesada predicción para ${raceId} (${raceYear}) de ${userId}`);
+      console.log(`Puntos: ${puntos}, Coincidencias exactas: ${coincidenciasExactas}, Perfecta: ${prediccionPerfecta}`);
+    }
+
+    console.log("✔ Todas las predicciones vencidas han sido procesadas.");
+  } catch (error) {
+    console.error("❌ Error procesando predicciones:", error);
+  }
+};

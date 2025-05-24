@@ -1,12 +1,21 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const predictionSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   raceId: String, // de la API de F1
-  predictions: [String], // lista de IDs de pilotos (por posición)
-  submittedAt: { type: Date, default: Date.now }
+  raceYear: Number,
+  prediccion: {
+    P1: String,
+    P2: String,
+    P3: String,
+  },
+  submittedAt: { type: Date, default: Date.now },
 });
 
-const Prediction = mongoose.model('Prediction', predictionSchema);
+const Prediction = mongoose.model("Prediction", predictionSchema);
 
 export default Prediction;

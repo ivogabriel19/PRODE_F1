@@ -1,8 +1,8 @@
 export function calcularPuntajePrediccion(prediccion, resultadoReal) {
     let puntos = 0;
 
-    console.log('Predicción:', prediccion);
-    console.log('Resultado real:', resultadoReal);
+    //console.log('Predicción:', prediccion);
+    //console.log('Resultado real:', resultadoReal);
 
     // Normalizar nombres: convertir a minúsculas y sin espacios
     const normalizar = nombre => nombre.toLowerCase().replace(/\s+/g, '');

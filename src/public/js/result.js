@@ -45,10 +45,15 @@ async function submitForm(e) {
 
     const contenedor = document.getElementById("resultado");
     contenedor.innerHTML = "";
+    
+    mostrarResultado(anio, carrera);
+}
 
+async function mostrarResultado(anio, carrera) {
+    //Muestro resultado de la carrera abajo
     try {
         const res = await fetch(`/api/resultados/${anio}/${carrera}`);
-        console.log("Consultando: ", `/api/resultados/${anio}/${carrera}`);
+        //console.log("Consultando: ", `/api/resultados/${anio}/${carrera}`);
 
 
         if (!res.ok) {
@@ -57,11 +62,11 @@ async function submitForm(e) {
         }
 
         const data = await res.json();
-        console.log("Respuesta del servidor: ", data);
+        //console.log("Respuesta del servidor: ", data);
 
         const { resultado } = data;
         if (!resultado || !resultado.length) {
-            contenedor.innerHTML = "<p>No se encontraron resultados.</p>";
+            contenedor2.innerHTML = "<p>No se encontraron resultados.</p>";
             return;
         }
 
@@ -87,12 +92,12 @@ async function submitForm(e) {
                             <strong style="color:black;">${driver.position}. ${driver.Driver.givenName} ${driver.Driver.familyName}</strong>
                             - <p style="color:black;">${driver.Constructor.name} (${driver.points} pts)</p>
                             `;
-            contenedor.appendChild(div);
+            contenedor2.appendChild(div);
         });
 
     } catch (err) {
         console.error("Error en el fetch:", err);
-        contenedor.innerText = err.message || "Fallo al conectar con el servidor.";
+        contenedor2.innerText = err.message || "Fallo al conectar con el servidor.";
     }
 }
 

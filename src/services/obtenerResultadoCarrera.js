@@ -16,6 +16,9 @@ async function obtenerDesdeErgast(year, nombreCarrera) {
     try {
         //console.log('Nombre de la carrera:', nombreCarrera);
         //console.log('Año de la carrera:', year);
+
+        //FIXME: normalizar nombre carreras
+
         const round = await obtenerRoundPorNombre(nombreCarrera, year); // Desestructuración del slug
 
         console.log('Round obtenido:', round);

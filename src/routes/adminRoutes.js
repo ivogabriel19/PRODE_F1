@@ -1,6 +1,6 @@
 import express from "express";
-import { verificarJWT, verificarRol } from "../middlewares/auth.js";
-import processPredictions from "../utils/processPredictions.js";
+import { verificarJWT, verificarRol } from "../middlewares/authMiddleware.js";
+import {processPredictions} from "../utils/processPredictions.js";
 
 const router = express.Router();
 

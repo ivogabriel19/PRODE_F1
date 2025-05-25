@@ -1,6 +1,6 @@
-import Prediction from "../models/Prediction.js";
-import Result from "../models/Result.js";
-import User from "../models/User.js";
+import Prediction from "../models/prediction.js";
+import Result from "../models/result.js";
+import User from "../models/user.js";
 import { calcularPuntajePrediccion } from "./calcularPuntajePrediccion.js";
 import { obtenerResultadoCarrera } from "../services/obtenerResultadoCarrera.js";
 

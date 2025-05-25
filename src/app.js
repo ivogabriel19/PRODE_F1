@@ -11,7 +11,7 @@ import predictionRoutes from './routes/predictionRoutes.js';
 import resultadosRoutes from './routes/resultadosRoutes.js';
 import obtenerRoutes from './routes/obtenerRoutes.js';
 import authRoutes from './routes/authRoutes.js';
-import adminRoutes from "./routes/admin.js";
+import adminRoutes from "./routes/adminRoutes.js";
 
 dotenv.config();
 connectDB();

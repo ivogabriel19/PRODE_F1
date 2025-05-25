@@ -49,7 +49,7 @@ export async function submitPrediction(req, res) {
 export const crearPrediccion = async (req, res) => {
   const { raceYear, raceId, prediccion } = req.body;
   const userId = req.userId;
-  const raceDate = obtenerFechaCarrera(raceYear, raceId);
+  const raceDate = await obtenerFechaCarrera(raceYear, raceId);
 
   try {
     const nueva = new Prediction({ userId,  raceId, raceYear, raceDate, prediccion });

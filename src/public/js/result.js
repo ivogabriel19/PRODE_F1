@@ -50,6 +50,8 @@ async function submitForm(e) {
 }
 
 async function mostrarResultado(anio, carrera) {
+    const contenedor = document.getElementById("resultado");
+    contenedor.innerHTML = "";
     //Muestro resultado de la carrera abajo
     try {
         const res = await fetch(`/api/resultados/${anio}/${carrera}`);
@@ -66,7 +68,7 @@ async function mostrarResultado(anio, carrera) {
 
         const { resultado } = data;
         if (!resultado || !resultado.length) {
-            contenedor2.innerHTML = "<p>No se encontraron resultados.</p>";
+            contenedor.innerHTML = "<p>No se encontraron resultados.</p>";
             return;
         }
 
@@ -92,12 +94,12 @@ async function mostrarResultado(anio, carrera) {
                             <strong style="color:black;">${driver.position}. ${driver.Driver.givenName} ${driver.Driver.familyName}</strong>
                             - <p style="color:black;">${driver.Constructor.name} (${driver.points} pts)</p>
                             `;
-            contenedor2.appendChild(div);
+            contenedor.appendChild(div);
         });
 
     } catch (err) {
         console.error("Error en el fetch:", err);
-        contenedor2.innerText = err.message || "Fallo al conectar con el servidor.";
+        contenedor.innerText = err.message || "Fallo al conectar con el servidor.";
     }
 }
 

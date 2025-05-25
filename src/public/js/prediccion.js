@@ -127,9 +127,8 @@ async function submitForm(e) {
 
     const data = await response.json();
 
-    console.log("Respuesta del servidor:", data);
-    //TODO: la info recorre bien el circuito, habria que ver si el puntaje que devuelve esta bien
-
+    //console.log("Respuesta del servidor:", data);
+    
     if (response.ok) {
       contenedor.innerHTML = `
                                     <div class="resultado-card">

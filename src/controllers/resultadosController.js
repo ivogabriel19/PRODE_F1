@@ -2,7 +2,7 @@
 import { calcularPuntajePrediccion as evaluarPrediccion } from '../utils/calcularPuntajePrediccion.js';
 import { obtenerResultadoCarrera } from '../services/obtenerResultadoCarrera.js';
 import { obtenerResultadoCompletoCarrera as serviceObtenerResultadoCompletoCarrera} from '../services/obtenerResultadoCompletoCarrera.js';
-import { obtenerRoundPorNombre } from '../utils/obtenerRoundPorNombre.js';
+import { obtenerRoundPorNombre } from '../services/obtenerRoundPorNombre.js';
 
 export async function evaluarProde(req, res) {
     try {

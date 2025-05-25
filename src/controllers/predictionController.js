@@ -1,7 +1,8 @@
 import Prediction from "../models/prediction.js";
 import { calcularPuntajePrediccion } from "../utils/calcularPuntajePrediccion.js";
-import { verificarFechaCarrera } from "../utils/verificarFechaCarrera.js";
-import { obtenerResultadoCarrera } from "../services/obtenerResultadoCarrera.js"; // Asegúrate de tener esta función
+import { verificarFechaCarrera } from "../services/verificarFechaCarrera.js";
+import { obtenerResultadoCarrera } from "../services/obtenerResultadoCarrera.js"; 
+import { obtenerFechaCarrera } from "../services/obtenerFechaCarrera.js"; 
 
 // export async function submitPrediction(req, res) {
 //   procesarPrediction(req, res)
@@ -45,42 +46,13 @@ export async function submitPrediction(req, res) {
 }
 */
 
-export async function procesarPrediction(req, res) {
-  //endpoint para calcular un puntaje
-  try {
-    const { anio, carrera, pilotoP1, pilotoP2, pilotoP3 } = req.body;
-
-    if (!anio || !carrera || !pilotoP1 || !pilotoP2 || !pilotoP3) {
-      return res.status(400).json({ error: "Faltan datos en la solicitud.", datos: req.body });
-    }
-
-    // Obtener los resultados reales de la carrera
-    const resultadoReal = await obtenerResultadoCarrera(carrera, anio);
-    if (!resultadoReal || resultadoReal.length === 0) {
-      return res.status(404).json({
-        error: "No se encontraron resultados para la carrera especificada.",
-      });
-    }
-
-    // Construir la predicción del usuario
-    const prediccionUsuario = [pilotoP1, pilotoP2, pilotoP3];
-
-    // Calcular el puntaje
-    const puntajes = calcularPuntajePrediccion(prediccionUsuario, resultadoReal);
-
-    res.json({ puntajes });
-  } catch (error) {
-    console.error("Error al procesar la predicción:", error);
-    res.status(500).json({ error: "Error interno del servidor." });
-  }
-}
-
 export const crearPrediccion = async (req, res) => {
   const { raceYear, raceId, prediccion } = req.body;
   const userId = req.userId;
+  const raceDate = obtenerFechaCarrera(raceYear, raceId);
 
   try {
-    const nueva = new Prediction({ userId, raceYear, raceId, prediccion });
+    const nueva = new Prediction({ userId,  raceId, raceYear, raceDate, prediccion });
 
     const existing = await Prediction.findOne({ userId,raceYear,raceId});
 
@@ -140,3 +112,33 @@ export const eliminarPrediccion = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+export async function procesarPrediction(req, res) {
+  //endpoint para calcular un puntaje
+  try {
+    const { anio, carrera, pilotoP1, pilotoP2, pilotoP3 } = req.body;
+
+    if (!anio || !carrera || !pilotoP1 || !pilotoP2 || !pilotoP3) {
+      return res.status(400).json({ error: "Faltan datos en la solicitud.", datos: req.body });
+    }
+
+    // Obtener los resultados reales de la carrera
+    const resultadoReal = await obtenerResultadoCarrera(carrera, anio);
+    if (!resultadoReal || resultadoReal.length === 0) {
+      return res.status(404).json({
+        error: "No se encontraron resultados para la carrera especificada.",
+      });
+    }
+
+    // Construir la predicción del usuario
+    const prediccionUsuario = [pilotoP1, pilotoP2, pilotoP3];
+
+    // Calcular el puntaje
+    const puntajes = calcularPuntajePrediccion(prediccionUsuario, resultadoReal);
+
+    res.json({ puntajes });
+  } catch (error) {
+    console.error("Error al procesar la predicción:", error);
+    res.status(500).json({ error: "Error interno del servidor." });
+  }
+}

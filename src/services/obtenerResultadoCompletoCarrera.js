@@ -1,4 +1,4 @@
-import {obtenerRoundPorNombre} from '../utils/obtenerRoundPorNombre.js';
+import {obtenerRoundPorNombre} from './obtenerRoundPorNombre.js';
 
 export async function obtenerResultadoCompletoCarrera(nombreCarrera, year) {
     try {

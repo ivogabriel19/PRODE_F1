@@ -1,6 +1,7 @@
 import Prediction from "../models/prediction.js";
 import Result from "../models/result.js";
 import User from "../models/user.js";
+import Notification from "../models/notification.js";
 import { calcularPuntajePrediccion } from "./calcularPuntajePrediccion.js";
 import { obtenerResultadoCarrera } from "../services/obtenerResultadoCarrera.js";
 
@@ -51,6 +52,13 @@ export async function processPredictions() {
           perfectPredictions: prediccionPerfecta ? 1 : 0,
         },
       });
+
+      //6. Crear una notificación para el usuario
+      await Notification.create({
+        userId: userId,
+        message: `Se procesó tu predicción para la carrera ${raceId}. Puntaje: ${puntos}.`,
+      });
+
 
       console.log(`✔ Procesada predicción para ${raceId} (${raceYear}) de ${userId}`);
       console.log(`Puntos: ${puntos}, Coincidencias exactas: ${coincidenciasExactas}, Perfecta: ${prediccionPerfecta}`);

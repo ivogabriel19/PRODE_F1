@@ -318,6 +318,7 @@ padding: 8px;
 
 .nav-container .nav-buttons{
     display: flex;
+    padding: 1rem;
     gap: 1rem;
     list-style: none;
 }

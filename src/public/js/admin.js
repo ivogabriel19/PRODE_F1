@@ -4,7 +4,7 @@ async function procesar() {
     headers: { Authorization: 'Bearer ' + localStorage.token }
   });
   const data = await res.json();
-  document.getElementById('mensaje').innerText = data.mensaje || 'Error';
+  document.getElementById('mensaje').innerText = data.message || 'Error procesando';
   //cargarUsuarios();
 }
 

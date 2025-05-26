@@ -26,7 +26,7 @@ app.use('/api/predictions', predictionRoutes);
 app.use('/api/resultados', resultadosRoutes);
 app.use('/api/obtener', obtenerRoutes);
 app.use('/api/auth', authRoutes);
-app.use("/admin", adminRoutes);
+app.use("/api/admin", adminRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 
 //mongo & mongoose sandbox routes

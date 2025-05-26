@@ -1,8 +1,9 @@
-<nav class="nav-container">
-  <ul class="nav-buttons">
-    <li><button onclick="procesar()">Procesar predicciones</button></li>
-    <li><button onclick="cargarUsuarios()">cargar usuarios</button></li>
-  </ul>
-  <div id="mensaje"></div>
-  <ul id="usuarios"></ul>
-</nav>
+<div class="dropdown">
+  <button class="dropdown-toggle" data-target="admin-dropdown">🔧 Admin</button>
+  <div class="dropdown-menu" id="admin-dropdown">
+    <ul class="nav-buttons">
+      <li><button onclick="procesar()">Procesar predicciones</button></li>
+      <li><button onclick="cargarUsuarios()">Cargar usuarios</button></li>
+    </ul>
+  </div>
+</div>

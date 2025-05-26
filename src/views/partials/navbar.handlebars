@@ -1,4 +1,6 @@
 <nav class="navbar">
   {{> navbar/homeButton}}
-  {{> navbar/adminMenu}}
+  {{#if (eq user.role "admin")}}
+    {{> navbar/adminMenu}}
+  {{/if}}
 </nav>

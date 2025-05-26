@@ -33,6 +33,16 @@ app.engine('handlebars', exphbs.engine({
     path.join(__dirname, 'views/partials/user'),
   ]
 }));
+
+const hbs = exphbs.create({
+  helpers: {
+    eq: function(a, b) {
+      return a === b;
+    }
+  }
+});
+
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/views');
 

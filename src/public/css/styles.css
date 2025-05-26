@@ -315,3 +315,9 @@ font-size: 14px;
 padding: 8px;
 }
 }
+
+.nav-container .nav-buttons{
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+}

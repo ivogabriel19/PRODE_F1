@@ -27,7 +27,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.engine('handlebars', exphbs.engine({
   defaultLayout: 'main',             // Usa views/layouts/main.handlebars como layout base
   layoutsDir: __dirname + '/views/layouts',
-  partialsDir: __dirname + '/views/partials'
+  partialsDir: [
+    path.join(__dirname, 'views/partials'),
+    path.join(__dirname, 'views/partials/navbar'),
+    path.join(__dirname, 'views/partials/user'),
+  ]
 }));
 app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/views');

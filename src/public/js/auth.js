@@ -91,6 +91,7 @@ authForm.addEventListener('submit', async (e) => {
     }
 
     modal.style.display = 'none';
+    mainContainer.style.display = 'block';
     authForm.reset();
     checkAuthStatus();
   } catch (err) {

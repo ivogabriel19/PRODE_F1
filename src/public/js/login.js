@@ -1,6 +1,7 @@
 const lauthForm = document.getElementById('login-auth-form');
 const lusernameInput = document.getElementById('login-username');
 const lpasswordInput = document.getElementById('login-password');
+const mainContainer = document.querySelector('.main-container');
 
 lauthForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -38,7 +39,7 @@ lauthForm.addEventListener('submit', async (e) => {
       alert('Registro exitoso');
     }
 
-    modal.style.display = 'none';
+    mainContainer.style.display = 'block';
     lauthForm.reset();
     checkAuthStatus();
   } catch (err) {

@@ -1,7 +1,7 @@
 export const renderHome = (req, res) => {
   const user = { name: 'Guest', role: 'guest' };
-  console.log(req.user);
-  res.render('home', { title: 'Inicio', user: req.user || user });
+  //console.log(req.user);
+  res.render('home', { title: 'Inicio', user: /*req.user ||*/ user });
 };
 
 export const renderAbout = (req, res) => {

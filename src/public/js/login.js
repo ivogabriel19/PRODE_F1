@@ -1,12 +1,12 @@
-const authForm = document.getElementById('login-auth-form');
-const usernameInput = document.getElementById('login-username');
-const passwordInput = document.getElementById('login-password');
+const lauthForm = document.getElementById('login-auth-form');
+const lusernameInput = document.getElementById('login-username');
+const lpasswordInput = document.getElementById('login-password');
 
-authForm.addEventListener('submit', async (e) => {
+lauthForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const username = usernameInput.value;
-  const password = passwordInput.value;
+  const username = lusernameInput.value;
+  const password = lpasswordInput.value;
 
   try {
     const endpoint = mode === 'login' ? '/api/auth/login' : '/api/auth/register';
@@ -20,6 +20,10 @@ authForm.addEventListener('submit', async (e) => {
     });
 
     const data = await res.json();
+
+    if (res.ok) {
+      window.location.href = "/";
+    }
 
     if (!res.ok) {
       alert(data.message || 'Error de autenticación');
@@ -35,7 +39,7 @@ authForm.addEventListener('submit', async (e) => {
     }
 
     modal.style.display = 'none';
-    authForm.reset();
+    lauthForm.reset();
     checkAuthStatus();
   } catch (err) {
     console.error(err.message);

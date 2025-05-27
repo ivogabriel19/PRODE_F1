@@ -4,7 +4,7 @@ import { verificarJWT, verificarRol } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-router.get('/', verificarJWT, verificarRol("any") ,renderHome);
+router.get('/', renderHome);
 router.get('/about', renderAbout);
 
 export default router;

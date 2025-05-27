@@ -10,6 +10,13 @@ body {
     background-color: #121212;
     color: #ffffff;
     min-height: 100vh;
+    width: 100vw;
+}
+
+ul{
+    list-style: none;
+    gap: 0.5rem;
+    padding: 0.25rem;
 }
 
 header {
@@ -326,7 +333,6 @@ color: #ffffff; / texto blanco */
     display: flex;
     padding: 1rem;
     gap: 1rem;
-    list-style: none;
 }
 
 .navbar {

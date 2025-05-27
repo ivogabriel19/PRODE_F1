@@ -13,7 +13,8 @@ async function cargarUsuarios() {
     headers: { Authorization: 'Bearer ' + localStorage.token }
   });
   const data = await res.json();
-  const ul = document.getElementById('usuarios');
+  console.log(data);
+  const ul = document.getElementById('listaUsuarios');
   ul.innerHTML = '';
 
   console.log(data);
@@ -22,3 +23,6 @@ async function cargarUsuarios() {
     ul.innerHTML += `<li>${u.username || u.email} – ${u.totalScore} puntos – Rol: ${u.role}</li>`;
   });
 }
+
+document.getElementById('btn_procesarUsuarios').addEventListener("click", procesar);
+document.getElementById('btn_cargarUsuarios').addEventListener("click", cargarUsuarios);

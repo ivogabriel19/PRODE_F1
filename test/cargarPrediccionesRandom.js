@@ -154,5 +154,5 @@ async function main() {
   }
 }
 
-for (let i = 0; i < 10; i++) main(); 
+for (let i = 0; i < 10; i++) await main(); 
 //FIXME: no espera a que termine una para iniciar la siguiente

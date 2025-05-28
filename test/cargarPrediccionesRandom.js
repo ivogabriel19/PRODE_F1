@@ -125,6 +125,7 @@ async function cargarPredic(year, token) {
   })
     .then((response) => {
       if (!response.ok) {
+        console.error("Error en la petición:", response, "code:", response.status);
         throw new Error(`Error: ${response.status}`);
       }
       return response.json();

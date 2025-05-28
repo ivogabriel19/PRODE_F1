@@ -46,7 +46,7 @@ function getUserRandom() {
   const users = [
     "ivogabriel",
     "user1",
-    "user3",
+    "user2",
     "user3"
   ];
   return getRandom(users);
